@@ -12,6 +12,7 @@
 		3F1B1DF21EED61B1004279DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F1B1DF11EED61B1004279DF /* Assets.xcassets */; };
 		3F1B1DF51EED61B1004279DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1B1DF31EED61B1004279DF /* Main.storyboard */; };
 		3F1B1E031EED6575004279DF /* USBDeviceSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1B1E021EED6575004279DF /* USBDeviceSwift.framework */; };
+		3F47996A1EEEB7E50095CBFF /* STM32Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4799691EEEB7E50095CBFF /* STM32Device.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		3F1B1DF41EED61B1004279DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F1B1DF61EED61B1004279DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F1B1E021EED6575004279DF /* USBDeviceSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = USBDeviceSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/USBDeviceSwift-gknxknqrvuzujydouczavzvsmjto/Build/Products/Debug/USBDeviceSwift.framework"; sourceTree = "<group>"; };
+		3F4799691EEEB7E50095CBFF /* STM32Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STM32Device.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				3F1B1DED1EED61B1004279DF /* AppDelegate.swift */,
 				3F1B1DEF1EED61B1004279DF /* ViewController.swift */,
+				3F4799691EEEB7E50095CBFF /* STM32Device.swift */,
 				3F1B1DF11EED61B1004279DF /* Assets.xcassets */,
 				3F1B1DF31EED61B1004279DF /* Main.storyboard */,
 				3F1B1DF61EED61B1004279DF /* Info.plist */,
@@ -145,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F47996A1EEEB7E50095CBFF /* STM32Device.swift in Sources */,
 				3F1B1DF01EED61B1004279DF /* ViewController.swift in Sources */,
 				3F1B1DEE1EED61B1004279DF /* AppDelegate.swift in Sources */,
 			);

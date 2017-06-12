@@ -9,14 +9,14 @@
 import Cocoa
 
 
-public class USBDeviceMonitor: NSObject {
+public class USBDeviceMonitor<T: USBDevice, M: USBDeviceManager<T>>: NSObject {
     private var currentThread:Thread?
-    public var deviceManager:USBDeviceManager<USBDevice>
-    
-    public init(_ deviceManager:USBDeviceManager<USBDevice>) {
+    public var deviceManager:M
+
+    public init(_ deviceManager:M) {
         self.deviceManager = deviceManager
+        print(self.deviceManager)
     }
-    
     public func start() -> Thread {
         if (self.currentThread != nil) {
             return self.currentThread!
@@ -50,14 +50,14 @@ public class USBDeviceMonitor: NSObject {
             
             let matchingCallback:IOServiceMatchingCallback = { (userData, iterator) in
                 // Convert self to a void pointer, store that in the context, and convert it back to an object pointer
-                let this = Unmanaged<USBDeviceMonitor>
+                let this = Unmanaged<USBDeviceMonitor<USBDevice, USBDeviceManager<USBDevice>>>
                     .fromOpaque(userData!).takeUnretainedValue()
                 this.rawDeviceAdded(iterator: iterator)
             }
             
             let removalCallback: IOServiceMatchingCallback = {
                 (userData, iterator) in
-                let this = Unmanaged<USBDeviceMonitor>
+                let this = Unmanaged<USBDeviceMonitor<USBDevice, USBDeviceManager<USBDevice>>>
                     .fromOpaque(userData!).takeUnretainedValue()
                 this.rawDeviceRemoved(iterator: iterator)
             }
@@ -165,7 +165,6 @@ public class USBDeviceMonitor: NSObject {
             var pid:UInt16 = 0;
             kr = deviceInterface.GetDeviceVendor(deviceInterfacePtrPtr, &pid)
             assert(kr == kIOReturnSuccess)
-            
             let _ = self.deviceManager.add(id:deviceID, vendorId: vid, productId: pid, deviceName: deviceName)
         }
     }

@@ -18,35 +18,32 @@ public struct VIDPID {
     }
 }
 
-public protocol USBDeviceMonitorDelegate: NSObjectProtocol {
-    //associatedtype Device
+public protocol USBDeviceDelegate: NSObjectProtocol {
     func usbConnected(_ device:USBDevice)
     func usbDisconnected(_ device:USBDevice)
 }
 
-public class USBDeviceManager<T:USBDevice>: NSObject {
+open class USBDeviceManager<T:USBDevice>: NSObject {
     typealias Device = T
     public let vp:[VIDPID]
     public var devices:[T] = []
-    public var delegateUSBDeviceMonitor:USBDeviceMonitorDelegate?
+    public var delegateUSBDevice:USBDeviceDelegate?
     
     public init(_ vp:[VIDPID]) {
         self.vp = vp
     }
     
-    public func add(id:UInt64, vendorId:UInt16, productId:UInt16, deviceName:String = "Unnamed USB Device") -> T {
+    open func add(id:UInt64, vendorId:UInt16, productId:UInt16, deviceName:String = "Unnamed USB Device") -> T {
         let device = T(id:id, vendorId: vendorId, productId: productId, deviceName: deviceName)
         self.devices.append(device)
-        print("device vid\(vendorId)")
-        print("device delegateUSBDeviceMonitor\(self.delegateUSBDeviceMonitor)")
-        self.delegateUSBDeviceMonitor?.usbConnected(device)
+        self.delegateUSBDevice?.usbConnected(device)
         return device
     }
     
-    public func remove(id:UInt64) -> T? {
+    open func remove(id:UInt64) -> T? {
         if let index = self.devices.index(where: { $0.id == id }) {
             let device = self.devices.remove(at: index)
-            self.delegateUSBDeviceMonitor?.usbDisconnected(device)
+            self.delegateUSBDevice?.usbDisconnected(device)
             return device
         }
         return nil

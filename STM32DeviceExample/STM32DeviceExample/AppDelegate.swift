@@ -11,12 +11,12 @@ import USBDeviceSwift
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    var dfuDeviceManager = USBDeviceManager([VIDPID(vendorId: 0x0483, productId: 0xdf11)])
+    var dfuDeviceManager = STM32DeviceManager([VIDPID(vendorId: 0x0483, productId: 0xdf11)])
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
-        let dfuDeviceMonitor = USBDeviceMonitor(self.dfuDeviceManager)
+        let dfuDeviceMonitor = USBDeviceMonitor<USBDevice, STM32DeviceManager>(self.dfuDeviceManager)
         dfuDeviceMonitor.start()
     }
 

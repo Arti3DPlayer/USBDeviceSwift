@@ -9,7 +9,7 @@
 import Cocoa
 import USBDeviceSwift
 
-class ViewController: NSViewController, USBDeviceMonitorDelegate, NSComboBoxDataSource {
+class ViewController: NSViewController, USBDeviceDelegate, NSComboBoxDataSource {
     @IBOutlet weak var devicesComboBox: NSComboBox!
     @IBOutlet weak var connectButton: NSButton!
     @IBOutlet weak var connectedDeviceLabel: NSTextField!
@@ -40,7 +40,7 @@ class ViewController: NSViewController, USBDeviceMonitorDelegate, NSComboBoxData
     
     let appDelegate = NSApplication.shared().delegate as! AppDelegate
     var connectedDevice:USBDevice?
-    var devices:[USBDevice] = []
+    var devices:[STM32Device] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class ViewController: NSViewController, USBDeviceMonitorDelegate, NSComboBoxData
         // Do any additional setup after loading the view.
         
         
-        self.appDelegate.dfuDeviceManager.delegateUSBDeviceMonitor = self
+        self.appDelegate.dfuDeviceManager.delegateUSBDevice = self
         
         self.devicesComboBox.isEditable = false
         self.dfuDeviceView.isHidden = true
@@ -66,20 +66,19 @@ class ViewController: NSViewController, USBDeviceMonitorDelegate, NSComboBoxData
     }
     
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
-        return self.devices[index].deviceName
+        return self.devices[index].deviceMyName
     }
 
     func usbConnected(_ device: USBDevice) {
         DispatchQueue.main.async {
-            print(device.id)
-            self.devices = self.appDelegate.dfuDeviceManager.devices
+            self.devices = self.appDelegate.dfuDeviceManager.devices as! [STM32Device]
             self.devicesComboBox.reloadData()
         }
     }
     
     func usbDisconnected(_ device: USBDevice) {
         DispatchQueue.main.async {
-            self.devices = self.appDelegate.dfuDeviceManager.devices
+            self.devices = self.appDelegate.dfuDeviceManager.devices as! [STM32Device]
             self.devicesComboBox.reloadData()
             print(self.connectedDevice?.id)
             if (device.id == self.connectedDevice?.id) {
