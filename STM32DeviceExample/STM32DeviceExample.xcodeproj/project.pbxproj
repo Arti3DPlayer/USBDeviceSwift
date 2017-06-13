@@ -13,9 +13,7 @@
 		3F1B1DF51EED61B1004279DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F1B1DF31EED61B1004279DF /* Main.storyboard */; };
 		3F1B1E031EED6575004279DF /* USBDeviceSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1B1E021EED6575004279DF /* USBDeviceSwift.framework */; };
 		3F47996A1EEEB7E50095CBFF /* STM32Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4799691EEEB7E50095CBFF /* STM32Device.swift */; };
-		3F7D970C1EF02B800013C965 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 3F7D970B1EF02B800013C965 /* README.md */; };
 		3F7D970E1EF0308F0013C965 /* Media in Resources */ = {isa = PBXBuildFile; fileRef = 3F7D970D1EF0308F0013C965 /* Media */; };
-		3F7D97101EF0385C0013C965 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 3F7D970F1EF0385C0013C965 /* LICENSE */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,9 +25,7 @@
 		3F1B1DF61EED61B1004279DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F1B1E021EED6575004279DF /* USBDeviceSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = USBDeviceSwift.framework; path = "../../../Library/Developer/Xcode/DerivedData/USBDeviceSwift-gknxknqrvuzujydouczavzvsmjto/Build/Products/Debug/USBDeviceSwift.framework"; sourceTree = "<group>"; };
 		3F4799691EEEB7E50095CBFF /* STM32Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STM32Device.swift; sourceTree = "<group>"; };
-		3F7D970B1EF02B800013C965 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		3F7D970D1EF0308F0013C965 /* Media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Media; sourceTree = SOURCE_ROOT; };
-		3F7D970F1EF0385C0013C965 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,8 +43,6 @@
 		3F1B1DE11EED61B1004279DF = {
 			isa = PBXGroup;
 			children = (
-				3F7D970F1EF0385C0013C965 /* LICENSE */,
-				3F7D970B1EF02B800013C965 /* README.md */,
 				3F1B1DEC1EED61B1004279DF /* STM32DeviceExample */,
 				3F1B1DEB1EED61B1004279DF /* Products */,
 				3F1B1E011EED6574004279DF /* Frameworks */,
@@ -147,7 +141,6 @@
 			files = (
 				3F7D970E1EF0308F0013C965 /* Media in Resources */,
 				3F1B1DF21EED61B1004279DF /* Assets.xcassets in Resources */,
-				3F7D97101EF0385C0013C965 /* LICENSE in Resources */,
 				3F1B1DF51EED61B1004279DF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,7 +154,6 @@
 			files = (
 				3F47996A1EEEB7E50095CBFF /* STM32Device.swift in Sources */,
 				3F1B1DF01EED61B1004279DF /* ViewController.swift in Sources */,
-				3F7D970C1EF02B800013C965 /* README.md in Sources */,
 				3F1B1DEE1EED61B1004279DF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
