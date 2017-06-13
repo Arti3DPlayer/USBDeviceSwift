@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3F1B1E001EED6281004279DF /* USBDeviceSwift.xcworkspace in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1B1DFF1EED6281004279DF /* USBDeviceSwift.xcworkspace */; };
-		3F4799661EEE920D0095CBFF /* USBDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4799651EEE920D0095CBFF /* USBDeviceManager.swift */; };
 		3F4799681EEE923E0095CBFF /* USBDeviceMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4799671EEE923E0095CBFF /* USBDeviceMonitor.swift */; };
 		3F9E47E91EED5B59001D4FDD /* USBDeviceSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F9E47E71EED5B59001D4FDD /* USBDeviceSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F9E47F01EED5ECF001D4FDD /* USBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9E47EF1EED5ECF001D4FDD /* USBDevice.swift */; };
@@ -16,7 +15,6 @@
 
 /* Begin PBXFileReference section */
 		3F1B1DFF1EED6281004279DF /* USBDeviceSwift.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = USBDeviceSwift.xcworkspace; sourceTree = "<group>"; };
-		3F4799651EEE920D0095CBFF /* USBDeviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBDeviceManager.swift; sourceTree = "<group>"; };
 		3F4799671EEE923E0095CBFF /* USBDeviceMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBDeviceMonitor.swift; sourceTree = "<group>"; };
 		3F9E47E41EED5B59001D4FDD /* USBDeviceSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = USBDeviceSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F9E47E71EED5B59001D4FDD /* USBDeviceSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = USBDeviceSwift.h; sourceTree = "<group>"; };
@@ -67,7 +65,6 @@
 				3F9E47E71EED5B59001D4FDD /* USBDeviceSwift.h */,
 				3F9E47E81EED5B59001D4FDD /* Info.plist */,
 				3F9E47EF1EED5ECF001D4FDD /* USBDevice.swift */,
-				3F4799651EEE920D0095CBFF /* USBDeviceManager.swift */,
 				3F4799671EEE923E0095CBFF /* USBDeviceMonitor.swift */,
 			);
 			path = USBDeviceSwift;
@@ -154,7 +151,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F4799661EEE920D0095CBFF /* USBDeviceManager.swift in Sources */,
 				3F9E47F01EED5ECF001D4FDD /* USBDevice.swift in Sources */,
 				3F4799681EEE923E0095CBFF /* USBDeviceMonitor.swift in Sources */,
 			);
@@ -205,7 +201,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -252,7 +248,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -276,6 +272,7 @@
 				INFOPLIST_FILE = USBDeviceSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = ah.com.USBDeviceSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -299,6 +296,7 @@
 				INFOPLIST_FILE = USBDeviceSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = ah.com.USBDeviceSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

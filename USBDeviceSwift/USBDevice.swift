@@ -34,22 +34,41 @@ public func USBmakebmRequestType(direction:Int, type:Int, recipient:Int) -> UInt
     return UInt8((direction & kUSBRqDirnMask) << kUSBRqDirnShift)|UInt8((type & kUSBRqTypeMask) << kUSBRqTypeShift)|UInt8(recipient & kUSBRqRecipientMask)
 }
 
+public extension Notification.Name {
+    static let USBDeviceConnected = Notification.Name("USBDeviceConnected")
+    static let USBDeviceDisconnected = Notification.Name("USBDeviceDisconnected")
+}
 
-open class USBDevice: NSObject {
+public struct VIDPID {
+    public let vendorId:UInt16
+    public let productId:UInt16
+    
+    public init (vendorId:UInt16, productId:UInt16) {
+        self.vendorId = vendorId
+        self.productId = productId
+    }
+}
+
+public struct USBDevice {
     public let id:UInt64
     public let vendorId:UInt16
     public let productId:UInt16
-    public let deviceName:String
+    public let name:String
     
-    public var deviceInterfacePtrPtr: UnsafeMutablePointer<UnsafeMutablePointer<IOUSBDeviceInterface>?>?
-    public var plugInInterfacePtrPtr: UnsafeMutablePointer<UnsafeMutablePointer<IOCFPlugInInterface>?>?
-    public var interfacePtrPtr:UnsafeMutablePointer<UnsafeMutablePointer<IOUSBInterfaceInterface>?>?
+    public let deviceInterfacePtrPtr:UnsafeMutablePointer<UnsafeMutablePointer<IOUSBDeviceInterface>?>?
+    public let plugInInterfacePtrPtr:UnsafeMutablePointer<UnsafeMutablePointer<IOCFPlugInInterface>?>?
     
-    public required init(id:UInt64, vendorId:UInt16, productId:UInt16, deviceName:String = "Unnamed USB Device") {
+    public init(id:UInt64,
+                vendorId:UInt16,
+                productId:UInt16,
+                name:String,
+                deviceInterfacePtrPtr:UnsafeMutablePointer<UnsafeMutablePointer<IOUSBDeviceInterface>?>?,
+                plugInInterfacePtrPtr:UnsafeMutablePointer<UnsafeMutablePointer<IOCFPlugInInterface>?>?) {
         self.id = id
         self.vendorId = vendorId
         self.productId = productId
-        self.deviceName = deviceName
+        self.name = name
+        self.deviceInterfacePtrPtr = deviceInterfacePtrPtr
+        self.plugInInterfacePtrPtr = plugInInterfacePtrPtr
     }
-    
 }

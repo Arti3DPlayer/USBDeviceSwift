@@ -9,56 +9,33 @@
 import Cocoa
 
 
-public class USBDeviceMonitor<T: USBDevice, M: USBDeviceManager<T>>: NSObject {
-    private var currentThread:Thread?
-    public var deviceManager:M
+open class USBDeviceMonitor: NSObject {
+    public let vp:[VIDPID]
 
-    public init(_ deviceManager:M) {
-        self.deviceManager = deviceManager
-        print(self.deviceManager)
+    public init(_ vp:[VIDPID]) {
+        self.vp = vp
     }
-    public func start() -> Thread {
-        if (self.currentThread != nil) {
-            return self.currentThread!
-        }
-        self.currentThread = Thread(target: self, selector:#selector(self.initMonitor), object: nil)
-        self.currentThread!.start()
-        return self.currentThread!
-    }
-    
-    public func isRunning() -> Bool {
-        return (self.currentThread != nil) ? true : false
-    }
-    
-    public func cancel() {
-        if (self.currentThread != nil) {
-            self.currentThread!.cancel()
-        }
-    }
-    
-    public func initMonitor() {
-        var matchedIterator:io_iterator_t = 0
-        var removalIterator:io_iterator_t = 0
-        let notifyPort:IONotificationPortRef = IONotificationPortCreate(kIOMasterPortDefault)
-        IONotificationPortSetDispatchQueue(notifyPort, DispatchQueue(label: "IODetector"))
         
-        for vp in self.deviceManager.vp {
+    public func start() {
+        for vp in self.vp {
+            var matchedIterator:io_iterator_t = 0
+            var removalIterator:io_iterator_t = 0
+            let notifyPort:IONotificationPortRef = IONotificationPortCreate(kIOMasterPortDefault)
+            IONotificationPortSetDispatchQueue(notifyPort, DispatchQueue(label: "IODetector"))
             let matchingDict = IOServiceMatching(kIOUSBDeviceClassName)
                 as NSMutableDictionary
             matchingDict[kUSBVendorID] = NSNumber(value: vp.vendorId)
             matchingDict[kUSBProductID] = NSNumber(value: vp.productId)
-            
+
             let matchingCallback:IOServiceMatchingCallback = { (userData, iterator) in
-                // Convert self to a void pointer, store that in the context, and convert it back to an object pointer
-                let this = Unmanaged<USBDeviceMonitor<USBDevice, USBDeviceManager<USBDevice>>>
-                    .fromOpaque(userData!).takeUnretainedValue()
+                // Convert self to a void pointer, store that in the context, and convert it
+                let this = Unmanaged<USBDeviceMonitor>.fromOpaque(userData!).takeUnretainedValue()
                 this.rawDeviceAdded(iterator: iterator)
             }
             
             let removalCallback: IOServiceMatchingCallback = {
                 (userData, iterator) in
-                let this = Unmanaged<USBDeviceMonitor<USBDevice, USBDeviceManager<USBDevice>>>
-                    .fromOpaque(userData!).takeUnretainedValue()
+                let this = Unmanaged<USBDeviceMonitor>.fromOpaque(userData!).takeUnretainedValue()
                 this.rawDeviceRemoved(iterator: iterator)
             }
             
@@ -72,45 +49,41 @@ public class USBDeviceMonitor<T: USBDevice, M: USBDeviceManager<T>>: NSObject {
 
         }
         
-        
         RunLoop.current.run()
     }
-    
-    
-    private func rawDeviceAdded(iterator: io_iterator_t) {
+
+    public func rawDeviceAdded(iterator: io_iterator_t) {
         
         while case let usbDevice = IOIteratorNext(iterator), usbDevice != 0 {
             var score:Int32 = 0
             var kr:Int32 = 0
-            
+            var did:UInt64 = 0
+            var vid:UInt16 = 0
+            var pid:UInt16 = 0
+
             var deviceInterfacePtrPtr: UnsafeMutablePointer<UnsafeMutablePointer<IOUSBDeviceInterface>?>?
             var plugInInterfacePtrPtr: UnsafeMutablePointer<UnsafeMutablePointer<IOCFPlugInInterface>?>?
-            var interfacePtrPtr:UnsafeMutablePointer<UnsafeMutablePointer<IOUSBInterfaceInterface>?>?
+
+            kr = IORegistryEntryGetRegistryEntryID(usbDevice, &did)
             
-            
-            var deviceID:UInt64 = 0
-            let deviceIDResult = IORegistryEntryGetRegistryEntryID(usbDevice, &deviceID)
-            
-            if(deviceIDResult != kIOReturnSuccess) {
+            if(kr != kIOReturnSuccess) {
                 print("Error getting device id")
             }
-            
-            print("device \(deviceID)")
             
             // io_name_t imports to swift as a tuple (Int8, ..., Int8) 128 ints
             // although in device_types.h it's defined:
             // typedef	char io_name_t[128];
-            var deviceNameCString: [CChar] = [CChar](repeating: 0, count: 128)
-            let deviceNameResult = IORegistryEntryGetName(usbDevice, &deviceNameCString)
+            var deviceNameCString:[CChar] = [CChar](repeating: 0, count: 128)
+            kr = IORegistryEntryGetName(usbDevice, &deviceNameCString)
             
-            if(deviceNameResult != kIOReturnSuccess) {
+            if(kr != kIOReturnSuccess) {
                 print("Error getting device name")
             }
             
-            let deviceName = String.init(cString: &deviceNameCString)
+            let name = String.init(cString: &deviceNameCString)
             
             // Get plugInInterface for current USB device
-            let plugInInterfaceResult = IOCreatePlugInInterfaceForService(
+            kr = IOCreatePlugInInterfaceForService(
                 usbDevice,
                 kIOUSBDeviceUserClientTypeID,
                 kIOCFPlugInInterfaceID,
@@ -121,14 +94,17 @@ public class USBDeviceMonitor<T: USBDevice, M: USBDeviceManager<T>>: NSObject {
             IOObjectRelease(usbDevice)
             
             // Dereference pointer for the plug-in interface
-            guard plugInInterfaceResult == kIOReturnSuccess,
-                let plugInInterface = plugInInterfacePtrPtr?.pointee?.pointee else {
-                    print("Unable to get Plug-In Interface")
-                    continue
+            if (kr != kIOReturnSuccess) {
+                continue
+            }
+            
+            guard let plugInInterface = plugInInterfacePtrPtr?.pointee?.pointee else {
+                print("Unable to get Plug-In Interface")
+                continue
             }
             
             // use plug in interface to get a device interface
-            let deviceInterfaceResult = withUnsafeMutablePointer(to: &deviceInterfacePtrPtr) {
+            kr = withUnsafeMutablePointer(to: &deviceInterfacePtrPtr) {
                 $0.withMemoryRebound(to: Optional<LPVOID>.self, capacity: 1) {
                     plugInInterface.QueryInterface(
                         plugInInterfacePtrPtr,
@@ -138,50 +114,58 @@ public class USBDeviceMonitor<T: USBDevice, M: USBDeviceManager<T>>: NSObject {
             }
             
             // dereference pointer for the device interface
-            guard deviceInterfaceResult == kIOReturnSuccess,
-                let deviceInterface = deviceInterfacePtrPtr?.pointee?.pointee else {
-                    print("Unable to get Device Interface")
-                    continue
+            if (kr != kIOReturnSuccess) {
+                continue
+            }
+
+            guard let deviceInterface = deviceInterfacePtrPtr?.pointee?.pointee else {
+                print("Unable to get Device Interface")
+                continue
             }
             
             kr = deviceInterface.USBDeviceOpen(deviceInterfacePtrPtr)
             
-            if (kr != kIOReturnSuccess)
-            {
+            // kIOReturnExclusiveAccess is not a problem as we can still do some things
+            if (kr != kIOReturnSuccess && kr != kIOReturnExclusiveAccess) {
                 print("Could not open device (error: \(kr))")
                 continue
             }
-            else if (kr == kIOReturnExclusiveAccess)
-            {
-                // this is not a problem as we can still do some things
+            
+            kr = deviceInterface.GetDeviceVendor(deviceInterfacePtrPtr, &vid)
+            if (kr != kIOReturnSuccess) {
                 continue
             }
             
+            kr = deviceInterface.GetDeviceProduct(deviceInterfacePtrPtr, &pid)
+            if (kr != kIOReturnSuccess) {
+                continue
+            }
             
-            var vid:UInt16 = 0;
-            kr = deviceInterface.GetDeviceVendor(deviceInterfacePtrPtr, &vid)
-            assert(kr == kIOReturnSuccess)
+            let device = USBDevice(
+                id: did,
+                vendorId: vid,
+                productId: pid,
+                name:name,
+                deviceInterfacePtrPtr:deviceInterfacePtrPtr,
+                plugInInterfacePtrPtr:plugInInterfacePtrPtr
+            )
             
-            var pid:UInt16 = 0;
-            kr = deviceInterface.GetDeviceVendor(deviceInterfacePtrPtr, &pid)
-            assert(kr == kIOReturnSuccess)
-            let _ = self.deviceManager.add(id:deviceID, vendorId: vid, productId: pid, deviceName: deviceName)
+            NotificationCenter.default.post(name: .USBDeviceConnected, object: [
+                "device": device
+            ])
         }
     }
     
-    private func rawDeviceRemoved(iterator: io_iterator_t) {
-        
+    public func rawDeviceRemoved(iterator: io_iterator_t) {
         while case let usbDevice = IOIteratorNext(iterator), usbDevice != 0 {
             var kr:Int32 = 0
+            var did:UInt64 = 0
             
-            var deviceID:UInt64 = 0
-            let deviceIDResult = IORegistryEntryGetRegistryEntryID(usbDevice, &deviceID)
+            kr = IORegistryEntryGetRegistryEntryID(usbDevice, &did)
             
-            if(deviceIDResult != kIOReturnSuccess) {
+            if(kr != kIOReturnSuccess) {
                 print("Error getting device id")
             }
-            
-            print("device disconnect \(deviceID)")
             
             // USB device object is no longer needed.
             kr = IOObjectRelease(usbDevice)
@@ -192,7 +176,9 @@ public class USBDeviceMonitor<T: USBDevice, M: USBDeviceManager<T>>: NSObject {
                 continue
             }
             
-            let _ = self.deviceManager.remove(id: deviceID)
+            NotificationCenter.default.post(name: .USBDeviceDisconnected, object: [
+                "id": did
+            ])
         }
     }
 }

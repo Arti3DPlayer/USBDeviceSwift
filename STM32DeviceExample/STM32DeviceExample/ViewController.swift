@@ -9,13 +9,20 @@
 import Cocoa
 import USBDeviceSwift
 
-class ViewController: NSViewController, USBDeviceDelegate, NSComboBoxDataSource {
+class ViewController: NSViewController, NSComboBoxDataSource {
     @IBOutlet weak var devicesComboBox: NSComboBox!
     @IBOutlet weak var connectButton: NSButton!
     @IBOutlet weak var connectedDeviceLabel: NSTextField!
     @IBOutlet weak var dfuDeviceView: NSView!
+    @IBOutlet weak var responseLabel: NSTextField!
     
     @IBAction func getStatus(_ sender: Any) {
+        do {
+            let status = try self.connectedDevice?.getStatus()
+            self.responseLabel.stringValue = "Response: \(status!)"
+        } catch {
+            self.responseLabel.stringValue = "Response: \(error)"
+        }
         
     }
     
@@ -31,15 +38,14 @@ class ViewController: NSViewController, USBDeviceDelegate, NSComboBoxDataSource 
                     self.connectButton.title = "Disconnect"
                     self.devicesComboBox.isEnabled = false
                     self.connectedDevice = self.devices[self.devicesComboBox.integerValue]
-                    self.connectedDeviceLabel.stringValue = "Connected device: \(self.connectedDevice!.deviceName) (\(self.connectedDevice!.vendorId), \(self.connectedDevice!.productId))"
+                    self.connectedDeviceLabel.stringValue = "Connected device: \(self.connectedDevice!.deviceInfo.name) (\(self.connectedDevice!.deviceInfo.vendorId), \(self.connectedDevice!.deviceInfo.productId))"
                     self.dfuDeviceView.isHidden = false
                 }
             }
         }
     }
-    
-    let appDelegate = NSApplication.shared().delegate as! AppDelegate
-    var connectedDevice:USBDevice?
+
+    var connectedDevice:STM32Device?
     var devices:[STM32Device] = []
     
     override func viewDidLoad() {
@@ -47,10 +53,11 @@ class ViewController: NSViewController, USBDeviceDelegate, NSComboBoxDataSource 
 
         // Do any additional setup after loading the view.
         
-        
-        self.appDelegate.dfuDeviceManager.delegateUSBDevice = self
+        NotificationCenter.default.addObserver(self, selector: #selector(self.usbConnected), name: .USBDeviceConnected, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.usbDisconnected), name: .USBDeviceDisconnected, object: nil)
         
         self.devicesComboBox.isEditable = false
+        self.devicesComboBox.completes = false
         self.dfuDeviceView.isHidden = true
         self.devicesComboBox.reloadData()
     }
@@ -66,27 +73,43 @@ class ViewController: NSViewController, USBDeviceDelegate, NSComboBoxDataSource 
     }
     
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
-        return self.devices[index].deviceMyName
+        return self.devices[index].deviceInfo.name
     }
 
-    func usbConnected(_ device: USBDevice) {
+    func usbConnected(notification: NSNotification) {
+        guard let nobj = notification.object as? NSDictionary else {
+            return
+        }
+
+        guard let deviceInfo:USBDevice = nobj["device"] as? USBDevice else {
+            return
+        }
+        let device = STM32Device(deviceInfo)
         DispatchQueue.main.async {
-            self.devices = self.appDelegate.dfuDeviceManager.devices as! [STM32Device]
+            self.devices.append(device)
             self.devicesComboBox.reloadData()
         }
     }
     
-    func usbDisconnected(_ device: USBDevice) {
+    func usbDisconnected(notification: NSNotification) {
+        guard let nobj = notification.object as? NSDictionary else {
+            return
+        }
+        
+        guard let id:UInt64 = nobj["id"] as? UInt64 else {
+            return
+        }
         DispatchQueue.main.async {
-            self.devices = self.appDelegate.dfuDeviceManager.devices as! [STM32Device]
-            self.devicesComboBox.reloadData()
-            print(self.connectedDevice?.id)
-            if (device.id == self.connectedDevice?.id) {
-                self.connectButton.title = "Connect"
-                self.devicesComboBox.isEnabled = true
-                self.connectedDevice = nil
-                self.dfuDeviceView.isHidden = true
+            if let index = self.devices.index(where: { $0.deviceInfo.id == id }) {
+                self.devices.remove(at: index)
+                if (id == self.connectedDevice?.deviceInfo.id) {
+                    self.connectButton.title = "Connect"
+                    self.devicesComboBox.isEnabled = true
+                    self.connectedDevice = nil
+                    self.dfuDeviceView.isHidden = true
+                }
             }
+            self.devicesComboBox.reloadData()
         }
     }
 
