@@ -2,10 +2,16 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:USBDeviceSwift.podspec">
+   </FileRef>
+   <FileRef
       location = "group:LICENSE">
    </FileRef>
    <FileRef
       location = "group:README.md">
+   </FileRef>
+   <FileRef
+      location = "group:Package.swift">
    </FileRef>
    <FileRef
       location = "group:CHANGELOG.md">

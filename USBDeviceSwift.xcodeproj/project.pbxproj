@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F1B1E001EED6281004279DF /* USBDeviceSwift.xcworkspace in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1B1DFF1EED6281004279DF /* USBDeviceSwift.xcworkspace */; };
 		3F4799681EEE923E0095CBFF /* USBDeviceMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4799671EEE923E0095CBFF /* USBDeviceMonitor.swift */; };
+		3F6C3D881EF134BE0069B6CC /* Supporting Files in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C3D871EF134BE0069B6CC /* Supporting Files */; };
 		3F9E47E91EED5B59001D4FDD /* USBDeviceSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F9E47E71EED5B59001D4FDD /* USBDeviceSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F9E47F01EED5ECF001D4FDD /* USBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9E47EF1EED5ECF001D4FDD /* USBDevice.swift */; };
 /* End PBXBuildFile section */
@@ -16,6 +17,7 @@
 /* Begin PBXFileReference section */
 		3F1B1DFF1EED6281004279DF /* USBDeviceSwift.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = USBDeviceSwift.xcworkspace; sourceTree = "<group>"; };
 		3F4799671EEE923E0095CBFF /* USBDeviceMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBDeviceMonitor.swift; sourceTree = "<group>"; };
+		3F6C3D871EF134BE0069B6CC /* Supporting Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Supporting Files"; sourceTree = "<group>"; };
 		3F9E47E41EED5B59001D4FDD /* USBDeviceSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = USBDeviceSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F9E47E71EED5B59001D4FDD /* USBDeviceSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = USBDeviceSwift.h; sourceTree = "<group>"; };
 		3F9E47E81EED5B59001D4FDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,7 +47,8 @@
 		3F9E47DA1EED5B59001D4FDD = {
 			isa = PBXGroup;
 			children = (
-				3F9E47E61EED5B59001D4FDD /* USBDeviceSwift */,
+				3F6C3D871EF134BE0069B6CC /* Supporting Files */,
+				3F9E47E61EED5B59001D4FDD /* Sources */,
 				3F9E47E51EED5B59001D4FDD /* Products */,
 				3F1B1DFE1EED6281004279DF /* Frameworks */,
 			);
@@ -59,7 +62,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3F9E47E61EED5B59001D4FDD /* USBDeviceSwift */ = {
+		3F9E47E61EED5B59001D4FDD /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				3F9E47E71EED5B59001D4FDD /* USBDeviceSwift.h */,
@@ -67,7 +70,7 @@
 				3F9E47EF1EED5ECF001D4FDD /* USBDevice.swift */,
 				3F4799671EEE923E0095CBFF /* USBDeviceMonitor.swift */,
 			);
-			path = USBDeviceSwift;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +144,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F6C3D881EF134BE0069B6CC /* Supporting Files in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +273,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = USBDeviceSwift/Info.plist;
+				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -293,7 +297,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = USBDeviceSwift/Info.plist;
+				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
