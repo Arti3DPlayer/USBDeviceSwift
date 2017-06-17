@@ -1,16 +1,58 @@
 # USBDeviceSwift
 
-**USBDeviceSwift** - is a wrapper for IOKit.usb written on pure Swift that allows you convenient work with USB devices.
+**USBDeviceSwift** - is a wrapper for `IOKit.usb` and `IOKit.hid` written on pure Swift that allows you convenient work with USB devices.
 
 ## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Requirements
 
 * Mac OS X 10.10
 * Xcode 8+
 * Swift 3
+
+## Installation
+
+#### CocoaPods
+
+[CocoaPods](https://cocoapods.org/) is a dependency manager for Cocoa projects.
+
+Specify USBDeviceSwift into your project's `Podfile`:
+
+```ruby
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'testusb' do
+# Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+use_frameworks!
+
+# Pods for testusb
+
+pod 'USBDeviceSwift'
+
+end
+```
+
+Then run the following command:
+
+```bash
+$ pod install
+```
+
+#### Swift Package Manager
+
+[Swift Package Manager](https://swift.org/package-manager/)
+
+```
+import PackageDescription
+
+let package = Package(
+    name: "Example project",
+    dependencies: [
+        .Package(url: "https://github.com/Arti3DPlayer/USBDeviceSwift.git", majorVersion: 0),
+    ]
+)
+```
 
 ### Usage
 
@@ -22,6 +64,8 @@ These instructions will get you a copy of the project up and running on your loc
     </tr>
 </table>
 
+
+#### USB device communication
 
 Create `USBDeviceMonitor` object globally, set `vid` and `pid` of devices that you need to listen and run monitor in new thread for listen USB devices
 
@@ -87,7 +131,7 @@ class ViewController: NSViewController {
              return
          }
 
-        guard let deviceInfo:USBDevice = nobj["device"] as? USBDevice else {
+        guard let deviceInfo:USBDevice = nobj["id"] as? UInt64 else {
             return
         }
     }
@@ -144,6 +188,10 @@ func getStatus() throws -> [UInt8] {
     return requestPtr
 }
 ```
+
+#### HID device communication
+
+In progress
 
 ## License
 

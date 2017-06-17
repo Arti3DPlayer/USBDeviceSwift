@@ -10,9 +10,9 @@ import Cocoa
 
 
 open class USBDeviceMonitor: NSObject {
-    public let vp:[VIDPID]
+    public let vp:[USBMonitorData]
 
-    public init(_ vp:[VIDPID]) {
+    public init(_ vp:[USBMonitorData]) {
         self.vp = vp
     }
         

@@ -10,6 +10,8 @@
 		3F1B1E001EED6281004279DF /* USBDeviceSwift.xcworkspace in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1B1DFF1EED6281004279DF /* USBDeviceSwift.xcworkspace */; };
 		3F4799681EEE923E0095CBFF /* USBDeviceMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4799671EEE923E0095CBFF /* USBDeviceMonitor.swift */; };
 		3F6C3D881EF134BE0069B6CC /* Supporting Files in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C3D871EF134BE0069B6CC /* Supporting Files */; };
+		3F6C3D8A1EF14D4C0069B6CC /* HIDDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C3D891EF14D4C0069B6CC /* HIDDevice.swift */; };
+		3F6C3D8C1EF14D740069B6CC /* HIDDeviceMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C3D8B1EF14D740069B6CC /* HIDDeviceMonitor.swift */; };
 		3F9E47E91EED5B59001D4FDD /* USBDeviceSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F9E47E71EED5B59001D4FDD /* USBDeviceSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F9E47F01EED5ECF001D4FDD /* USBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9E47EF1EED5ECF001D4FDD /* USBDevice.swift */; };
 /* End PBXBuildFile section */
@@ -18,9 +20,10 @@
 		3F1B1DFF1EED6281004279DF /* USBDeviceSwift.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = USBDeviceSwift.xcworkspace; sourceTree = "<group>"; };
 		3F4799671EEE923E0095CBFF /* USBDeviceMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBDeviceMonitor.swift; sourceTree = "<group>"; };
 		3F6C3D871EF134BE0069B6CC /* Supporting Files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Supporting Files"; sourceTree = "<group>"; };
+		3F6C3D891EF14D4C0069B6CC /* HIDDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HIDDevice.swift; sourceTree = "<group>"; };
+		3F6C3D8B1EF14D740069B6CC /* HIDDeviceMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HIDDeviceMonitor.swift; sourceTree = "<group>"; };
 		3F9E47E41EED5B59001D4FDD /* USBDeviceSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = USBDeviceSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F9E47E71EED5B59001D4FDD /* USBDeviceSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = USBDeviceSwift.h; sourceTree = "<group>"; };
-		3F9E47E81EED5B59001D4FDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F9E47EF1EED5ECF001D4FDD /* USBDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBDevice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,9 +69,10 @@
 			isa = PBXGroup;
 			children = (
 				3F9E47E71EED5B59001D4FDD /* USBDeviceSwift.h */,
-				3F9E47E81EED5B59001D4FDD /* Info.plist */,
 				3F9E47EF1EED5ECF001D4FDD /* USBDevice.swift */,
 				3F4799671EEE923E0095CBFF /* USBDeviceMonitor.swift */,
+				3F6C3D891EF14D4C0069B6CC /* HIDDevice.swift */,
+				3F6C3D8B1EF14D740069B6CC /* HIDDeviceMonitor.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -157,6 +161,8 @@
 			files = (
 				3F9E47F01EED5ECF001D4FDD /* USBDevice.swift in Sources */,
 				3F4799681EEE923E0095CBFF /* USBDeviceMonitor.swift in Sources */,
+				3F6C3D8C1EF14D740069B6CC /* HIDDeviceMonitor.swift in Sources */,
+				3F6C3D8A1EF14D4C0069B6CC /* HIDDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

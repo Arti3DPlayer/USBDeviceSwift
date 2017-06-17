@@ -17,6 +17,9 @@
       location = "group:CHANGELOG.md">
    </FileRef>
    <FileRef
+      location = "group:RaceflightControllerHIDExample/RaceflightControllerHIDExample.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:STM32DeviceExample/STM32DeviceExample.xcodeproj">
    </FileRef>
    <FileRef
