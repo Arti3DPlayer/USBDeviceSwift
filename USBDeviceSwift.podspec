@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/Arti3DPlayer/USBDeviceSwift"
-  # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
+  s.screenshots  = "https://github.com/Arti3DPlayer/USBDeviceSwift/raw/1.0.0/STM32DeviceExample/Media/stm32example.gif", "https://github.com/Arti3DPlayer/USBDeviceSwift/raw/1.0.0/RaceflightControllerHIDExample/Media/rfHIDExample.gif"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

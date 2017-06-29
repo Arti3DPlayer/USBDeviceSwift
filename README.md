@@ -60,7 +60,7 @@ import PackageDescription
 let package = Package(
     name: "Example project",
     dependencies: [
-        .Package(url: "https://github.com/Arti3DPlayer/USBDeviceSwift.git", majorVersion: 0),
+        .Package(url: "https://github.com/Arti3DPlayer/USBDeviceSwift.git", majorVersion: 1),
     ]
 )
 ```
