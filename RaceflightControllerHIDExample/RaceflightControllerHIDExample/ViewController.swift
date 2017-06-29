@@ -14,7 +14,37 @@ class ViewController: NSViewController, NSComboBoxDataSource {
     @IBOutlet weak var connectButton: NSButton!
     @IBOutlet weak var connectedDeviceLabel: NSTextField!
     @IBOutlet weak var rfDeviceView: NSView!
-    @IBOutlet weak var responseLabel: NSTextField!
+    
+    @IBOutlet weak var outputTextFied: NSTextField!
+    @IBOutlet weak var sendButton: NSButton!
+    
+    @IBOutlet var inputTextView: NSTextView!
+    @IBOutlet weak var clearLogButton: NSButton!
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @IBAction func sendOutputData(_ sender:AnyObject) {
+        if let connectedDevice = self.connectedDevice,
+            let field = self.outputTextFied {
+            connectedDevice.sendCommad(command: field.stringValue)
+        }
+    }
+    
+    
+    @IBAction func clearLog(sender: AnyObject) {
+        DispatchQueue.main.async {
+            self.inputTextView?.string = ""
+            self.inputTextView?.scrollToBeginningOfDocument(self)
+        }
+    }
+    
+    override func viewWillDisappear() {
+        NotificationCenter.default.removeObserver(self)
+        super.viewWillDisappear()
+    }
+
     
     @IBAction func connectDevice(_ sender: Any) {
         DispatchQueue.main.async {
@@ -24,10 +54,12 @@ class ViewController: NSViewController, NSComboBoxDataSource {
                     self.devicesComboBox.isEnabled = true
                     self.connectedDevice = nil
                     self.rfDeviceView.isHidden = true
+                    self.connectedDeviceLabel.isHidden = true
                 } else {
                     self.connectButton.title = "Disconnect"
                     self.devicesComboBox.isEnabled = false
                     self.connectedDevice = self.devices[self.devicesComboBox.integerValue]
+                    self.connectedDeviceLabel.isHidden = false
                     self.connectedDeviceLabel.stringValue = "Connected device: \(self.connectedDevice!.deviceInfo.name) (\(self.connectedDevice!.deviceInfo.vendorId), \(self.connectedDevice!.deviceInfo.productId))"
                     self.rfDeviceView.isHidden = false
                 }
@@ -45,10 +77,12 @@ class ViewController: NSViewController, NSComboBoxDataSource {
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.usbConnected), name: .HIDDeviceConnected, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.usbDisconnected), name: .HIDDeviceDisconnected, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.hidReadData), name: .HIDDeviceDataReceived, object: nil)
         
         self.devicesComboBox.isEditable = false
         self.devicesComboBox.completes = false
         self.rfDeviceView.isHidden = true
+        self.connectedDeviceLabel.isHidden = true
         self.devicesComboBox.reloadData()
     }
     
@@ -94,12 +128,25 @@ class ViewController: NSViewController, NSComboBoxDataSource {
                 self.devices.remove(at: index)
                 if (id == self.connectedDevice?.deviceInfo.id) {
                     self.connectButton.title = "Connect"
+                    self.connectedDeviceLabel.isHidden = true
                     self.devicesComboBox.isEnabled = true
                     self.connectedDevice = nil
                     self.rfDeviceView.isHidden = true
                 }
             }
             self.devicesComboBox.reloadData()
+        }
+    }
+    
+    func hidReadData(notification: Notification) {
+        let obj = notification.object as! NSDictionary
+        let data = obj["data"] as! Data
+        
+        if let str = self.connectedDevice?.convertByteDataToString(data) {
+            DispatchQueue.main.async {
+                self.inputTextView?.string = "\(self.inputTextView!.string!)\(str)\n"
+                self.inputTextView?.scrollToEndOfDocument(self)
+            }
         }
     }
     

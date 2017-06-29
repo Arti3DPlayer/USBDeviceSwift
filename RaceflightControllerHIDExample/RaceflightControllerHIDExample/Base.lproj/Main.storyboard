@@ -750,6 +750,9 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="clearLogWithSender:" target="XfG-lQ-9wD" id="e3P-kT-mIE"/>
+                                            </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yao-Ql-z11">
                                             <rect key="frame" x="393" y="278" width="71" height="32"/>
@@ -757,6 +760,9 @@
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="sendOutputData:" target="XfG-lQ-9wD" id="QaL-0L-a18"/>
+                                            </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" verticalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uZy-Jx-NrW">
                                             <rect key="frame" x="8" y="284" width="293" height="22"/>
@@ -765,6 +771,9 @@
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <action selector="sendOutputData:" target="XfG-lQ-9wD" id="ott-f2-e66"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -808,10 +817,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="clearLogButton" destination="ogh-MX-7nR" id="mjQ-ac-ixF"/>
                         <outlet property="connectButton" destination="psQ-Jt-Azr" id="v3i-ZU-ztp"/>
                         <outlet property="connectedDeviceLabel" destination="hOQ-Od-fpc" id="exb-yQ-0G0"/>
                         <outlet property="devicesComboBox" destination="BGM-Gz-gHi" id="5tJ-2j-AsG"/>
+                        <outlet property="inputTextView" destination="ajW-8S-Qs5" id="kix-Mw-5bv"/>
+                        <outlet property="outputTextFied" destination="uZy-Jx-NrW" id="NpE-DN-g11"/>
                         <outlet property="rfDeviceView" destination="8VJ-Fg-rop" id="vK3-M6-PeE"/>
+                        <outlet property="sendButton" destination="Yao-Ql-z11" id="hTs-d0-On6"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

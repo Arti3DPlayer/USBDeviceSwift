@@ -61,6 +61,9 @@ let package = Package(
         <th>
             <img src="STM32DeviceExample/Media/stm32example.gif"/>
         </th>
+        <th>
+            <img src="RaceflightControllerHIDExample/Media/rfHIDExample.gif"/>
+        </th>
     </tr>
 </table>
 

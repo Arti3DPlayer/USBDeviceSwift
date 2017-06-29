@@ -68,6 +68,9 @@ open class HIDDeviceMonitor: NSObject {
     }
     
     open func rawDeviceRemoved(_ inResult: IOReturn, inSender: UnsafeMutableRawPointer, inIOHIDDeviceRef: IOHIDDevice!) {
-        NotificationCenter.default.post(name: .HIDDeviceDisconnected, object: nil)
+        let device = HIDDevice(device:inIOHIDDeviceRef)
+        NotificationCenter.default.post(name: .HIDDeviceDisconnected, object: [
+            "id": device.id
+        ])
     }
 }

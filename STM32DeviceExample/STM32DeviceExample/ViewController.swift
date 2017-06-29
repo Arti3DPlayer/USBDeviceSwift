@@ -16,6 +16,10 @@ class ViewController: NSViewController, NSComboBoxDataSource {
     @IBOutlet weak var dfuDeviceView: NSView!
     @IBOutlet weak var responseLabel: NSTextField!
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     @IBAction func getStatus(_ sender: Any) {
         do {
             let status = try self.connectedDevice?.getStatus()

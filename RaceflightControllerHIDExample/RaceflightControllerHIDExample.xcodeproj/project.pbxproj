@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F0F35FD1F0504BB00782AAA /* Media in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F35FC1F0504BB00782AAA /* Media */; };
 		3F6C3D9A1EF156890069B6CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C3D991EF156890069B6CC /* AppDelegate.swift */; };
 		3F6C3D9C1EF156890069B6CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6C3D9B1EF156890069B6CC /* ViewController.swift */; };
 		3F6C3D9E1EF156890069B6CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F6C3D9D1EF156890069B6CC /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F0F35FC1F0504BB00782AAA /* Media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Media; sourceTree = "<group>"; };
 		3F6C3D961EF156890069B6CC /* RaceflightControllerHIDExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RaceflightControllerHIDExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6C3D991EF156890069B6CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F6C3D9B1EF156890069B6CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -42,6 +44,7 @@
 		3F6C3D8D1EF156890069B6CC = {
 			isa = PBXGroup;
 			children = (
+				3F0F35FC1F0504BB00782AAA /* Media */,
 				3F6C3D981EF156890069B6CC /* RaceflightControllerHIDExample */,
 				3F6C3D971EF156890069B6CC /* Products */,
 				3F6C3DAF1EF159470069B6CC /* Frameworks */,
@@ -143,6 +146,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F0F35FD1F0504BB00782AAA /* Media in Resources */,
 				3F6C3D9E1EF156890069B6CC /* Assets.xcassets in Resources */,
 				3F6C3DA11EF156890069B6CC /* Main.storyboard in Resources */,
 			);
