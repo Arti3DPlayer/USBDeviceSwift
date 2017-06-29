@@ -39,7 +39,7 @@ public extension Notification.Name {
     static let USBDeviceDisconnected = Notification.Name("USBDeviceDisconnected")
 }
 
-public struct VIDPID {
+public struct USBMonitorData {
     public let vendorId:UInt16
     public let productId:UInt16
     

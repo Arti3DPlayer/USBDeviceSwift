@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "USBDeviceSwift"
-  s.version      = "0.0.1"
-  s.summary      = "USBDeviceSwift - is a wrapper for IOKit.usb written on pure Swift that allows you convenient work with USB devices."
+  s.version      = "1.0.0"
+  s.summary      = "USBDeviceSwift - is a wrapper for `IOKit.usb` and `IOKit.hid` written on pure Swift that allows you convenient work with USB devices."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -26,13 +26,13 @@ Pod::Spec.new do |s|
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
 
-                    Working with IOKit.usb on Swift is a pain. A lot of not converted C code, pointers make your life harder.
+                    Working with `IOKit.usb` and `IOKit.hid` on Swift is a pain. A lot of not converted C code, pointers make your life harder.
                     This library provides basic connect/disconnect events, converted functions to send and receive requests and examples.
 
                    DESC
 
   s.homepage     = "https://github.com/Arti3DPlayer/USBDeviceSwift"
-  # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
+  s.screenshots  = "https://github.com/Arti3DPlayer/USBDeviceSwift/raw/1.0.0/STM32DeviceExample/Media/stm32example.gif", "https://github.com/Arti3DPlayer/USBDeviceSwift/raw/1.0.0/RaceflightControllerHIDExample/Media/rfHIDExample.gif"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
