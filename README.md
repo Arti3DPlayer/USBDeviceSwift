@@ -126,7 +126,7 @@ class ViewController: NSViewController {
     }
 
     // getting disconnected device id
-    func usbConnected(notification: NSNotification) {
+    func usbDisconnected(notification: NSNotification) {
          guard let nobj = notification.object as? NSDictionary else {
              return
          }
