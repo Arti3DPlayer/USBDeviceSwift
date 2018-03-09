@@ -2,6 +2,7 @@
 
 - Updated all projects to Switf 4
 - Created Wiki documentation [here](https://github.com/Arti3DPlayer/USBDeviceSwift/wiki)
+- Added Serial device support
 
 ## 1.0.2
 - Explicitly set Swift version project-wide

@@ -43,7 +43,7 @@ open class HIDDeviceMonitor {
         IOHIDManagerRegisterDeviceRemovalCallback(managerRef, removalCallback, unsafeBitCast(self, to: UnsafeMutableRawPointer.self))
         
         
-        RunLoop.current.run();
+        RunLoop.current.run()
     }
     
     open func read(_ inResult: IOReturn, inSender: UnsafeMutableRawPointer, type: IOHIDReportType, reportId: UInt32, report: UnsafeMutablePointer<UInt8>, reportLength: CFIndex) {

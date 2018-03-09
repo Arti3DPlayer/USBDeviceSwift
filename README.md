@@ -1,6 +1,6 @@
 # USBDeviceSwift
 
-**USBDeviceSwift** - is a wrapper for `IOKit.usb` and `IOKit.hid` written on pure Swift that allows you convenient work with USB devices.
+**USBDeviceSwift** - is a wrapper for `IOKit.usb` and `IOKit.hid` and `IOKit.serial` written on pure Swift that allows you convenient work with USB devices.
 
 <table>
     <tr>
@@ -12,6 +12,9 @@
         </th>
     </tr>
 </table>
+
+Working with `IOKit.usb` and `IOKit.hid` and `IOKit.serial` on Swift is a pain. A lot of not converted C code, pointers make your life harder.
+This library provides basic connect/disconnect events, converted functions to send and receive requests and examples.
 
 ## Getting Started
 
