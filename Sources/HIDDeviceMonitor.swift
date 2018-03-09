@@ -21,7 +21,7 @@ open class HIDDeviceMonitor: NSObject {
     }
     
     
-    open func start() {
+    @objc open func start() {
         let managerRef = IOHIDManagerCreate(kCFAllocatorDefault, IOOptionBits(kIOHIDOptionsTypeNone))
         var deviceMatches:[[String:Any]] = []
         for vp in self.vp {
