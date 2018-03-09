@@ -100,7 +100,7 @@ class ViewController: NSViewController, NSComboBoxDataSource {
         return self.devices[index].deviceInfo.name
     }
     
-    func usbConnected(notification: NSNotification) {
+    @objc func usbConnected(notification: NSNotification) {
         guard let nobj = notification.object as? NSDictionary else {
             return
         }
@@ -115,7 +115,7 @@ class ViewController: NSViewController, NSComboBoxDataSource {
         }
     }
     
-    func usbDisconnected(notification: NSNotification) {
+    @objc func usbDisconnected(notification: NSNotification) {
         guard let nobj = notification.object as? NSDictionary else {
             return
         }
@@ -138,13 +138,13 @@ class ViewController: NSViewController, NSComboBoxDataSource {
         }
     }
     
-    func hidReadData(notification: Notification) {
+    @objc func hidReadData(notification: Notification) {
         let obj = notification.object as! NSDictionary
         let data = obj["data"] as! Data
         
         if let str = self.connectedDevice?.convertByteDataToString(data) {
             DispatchQueue.main.async {
-                self.inputTextView?.string = "\(self.inputTextView!.string!)\(str)\n"
+                self.inputTextView?.string = "\(self.inputTextView!.string)\(str)\n"
                 self.inputTextView?.scrollToEndOfDocument(self)
             }
         }

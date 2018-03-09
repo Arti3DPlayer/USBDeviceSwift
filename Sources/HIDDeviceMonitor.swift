@@ -11,7 +11,7 @@ import Foundation
 import IOKit.hid
 
 
-open class HIDDeviceMonitor: NSObject {
+open class HIDDeviceMonitor {
     public let vp:[HIDMonitorData]
     public let reportSize:Int
     
@@ -19,7 +19,6 @@ open class HIDDeviceMonitor: NSObject {
         self.vp = vp
         self.reportSize = reportSize
     }
-    
     
     @objc open func start() {
         let managerRef = IOHIDManagerCreate(kCFAllocatorDefault, IOOptionBits(kIOHIDOptionsTypeNone))

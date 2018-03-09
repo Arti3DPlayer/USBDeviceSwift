@@ -26,7 +26,7 @@ enum STM32DeviceError: Error {
     case RequestError(desc:String)
 }
 
-class STM32Device: NSObject {
+class STM32Device {
     var deviceInfo:USBDevice
     
     required init(_ deviceInfo:USBDevice) {
