@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "USBDeviceSwift"
   s.version      = "1.0.3"
-  s.summary      = "USBDeviceSwift - is a wrapper for `IOKit.usb` and `IOKit.hid` and `IOKit.serial` written on pure Swift that allows you convenient work with USB devices."
+  s.summary      = "USBDeviceSwift - is a wrapper for `IOKit` written on pure Swift that allows you convenient work with USB devices."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
