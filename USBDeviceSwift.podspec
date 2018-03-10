@@ -15,9 +15,10 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "USBDeviceSwift"
-  s.version      = "1.0.3"
-  s.summary      = "USBDeviceSwift - is a wrapper for `IOKit` written on pure Swift that allows you convenient work with USB devices."
+  s.name          = "USBDeviceSwift"
+  s.version       = "1.0.3"
+  s.summary       = "USBDeviceSwift - is a wrapper for `IOKit` written on pure Swift that allows you convenient work with USB devices."
+  s.swift_version = "4.0"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -138,5 +139,4 @@ Pod::Spec.new do |s|
   # s.dependency "JSONKit", "~> 1.4"
 
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
-
 end
