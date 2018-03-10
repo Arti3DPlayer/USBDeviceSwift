@@ -20,8 +20,8 @@ public struct SerialDevice {
     public var name:String? // USB Product Name
     public var vendorName:String? //USB Vendor Name
     public var serialNumber:String? //USB Serial Number
-    public var vendorId:Int? //USB Serial Number
-    public var productId:Int? //USB Serial Number
+    public var vendorId:Int? //USB Vendor id
+    public var productId:Int? //USB Product id
     
     init(path:String) {
         self.path = path
