@@ -13,7 +13,7 @@
     </tr>
     <tr>
          <th>
-         <img src="CleanFlightSerialExample/Media/serialCFExample"/>
+         <img src="CleanFlightSerialExample/Media/serialCFExample.gif"/>
          </th>
     </tr>
 </table>
