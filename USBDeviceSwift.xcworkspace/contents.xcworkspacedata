@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SerialDeviceSwift/SerialDeviceSwift.xcodeproj">
+      location = "group:CleanFlightSerialExample/CleanFlightSerialExample.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:USBDeviceSwift.podspec">

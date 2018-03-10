@@ -10,15 +10,30 @@ import Foundation
 import IOKit.serial
 
 
+public extension Notification.Name {
+    static let SerialDeviceAdded = Notification.Name("SerialDeviceAdded")
+    static let SerialDeviceRemoved = Notification.Name("SerialDeviceRemoved")
+}
+
 public struct SerialDevice {
-    let path:String
-    var name:String? // USB Product Name
-    var vendorName:String? //USB Vendor Name
-    var serialNumber:String? //USB Serial Number
-    var vendorId:Int? //USB Serial Number
-    var productId:Int? //USB Serial Number
+    public let path:String
+    public var name:String? // USB Product Name
+    public var vendorName:String? //USB Vendor Name
+    public var serialNumber:String? //USB Serial Number
+    public var vendorId:Int? //USB Serial Number
+    public var productId:Int? //USB Serial Number
     
     init(path:String) {
         self.path = path
+    }
+}
+
+extension SerialDevice: Hashable {
+    public var hashValue: Int {
+        return "\(path)".hashValue
+    }
+    
+    public static func ==(lhs: SerialDevice, rhs: SerialDevice) -> Bool {
+        return lhs.path == rhs.path
     }
 }

@@ -11,6 +11,11 @@
             <img src="RaceflightControllerHIDExample/Media/rfHIDExample.gif"/>
         </th>
     </tr>
+    <tr>
+         <th>
+         <img src="CleanFlightSerialExample/Media/serialCFExample"/>
+         </th>
+    </tr>
 </table>
 
 Working with `IOKit.usb` and `IOKit.hid` and `IOKit.serial` on Swift is a pain. A lot of not converted C code, pointers make your life harder.

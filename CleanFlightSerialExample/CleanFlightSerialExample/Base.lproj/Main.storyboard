@@ -11,11 +11,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="SerialDeviceSwift" id="1Xt-HY-uBw">
+                            <menuItem title="CleanFlightSerialExample" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="SerialDeviceSwift" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="CleanFlightSerialExample" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About SerialDeviceSwift" id="5kV-Vb-QxS">
+                                        <menuItem title="About CleanFlightSerialExample" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -29,7 +29,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide SerialDeviceSwift" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide CleanFlightSerialExample" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -47,7 +47,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit SerialDeviceSwift" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit CleanFlightSerialExample" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -660,7 +660,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="SerialDeviceSwift Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="CleanFlightSerialExample Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -709,57 +709,43 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ren-uu-WFJ">
-                                <rect key="frame" x="8" y="268" width="349" height="26"/>
+                                <rect key="frame" x="8" y="268" width="368" height="26"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Select CleanFlight device from list" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="5" id="uIO-Y0-zgv">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </comboBoxCell>
+                                <connections>
+                                    <outlet property="dataSource" destination="XfG-lQ-9wD" id="tiG-Nl-6SK"/>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="eo3-6C-twG"/>
+                                </connections>
                             </comboBox>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vlv-7I-ib7">
-                                <rect key="frame" x="356" y="264" width="92" height="32"/>
-                                <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Oac-DL-ku1">
+                                <rect key="frame" x="375" y="264" width="73" height="32"/>
+                                <buttonCell key="cell" type="push" title="Open" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Oac-DL-ku1">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="connectDevice:" target="XfG-lQ-9wD" id="Ydd-pd-CcE"/>
+                                </connections>
                             </button>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="spw-cU-0f5">
                                 <rect key="frame" x="8" y="8" width="434" height="255"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fsg-Qu-vfh">
                                         <rect key="frame" x="6" y="230" width="422" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Connected device: DeviceName" id="zEv-Qo-kg2">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Port opened: DeviceName" id="zEv-Qo-kg2">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KO7-gM-21g">
-                                        <rect key="frame" x="6" y="176" width="64" height="17"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Response" id="reP-oD-Bbx">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BBm-xE-IJt">
-                                        <rect key="frame" x="2" y="194" width="103" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Get status" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rNx-kr-ssN">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="fsg-Qu-vfh" firstAttribute="leading" secondItem="spw-cU-0f5" secondAttribute="leading" constant="8" id="1cz-kR-EuZ"/>
                                     <constraint firstAttribute="trailing" secondItem="fsg-Qu-vfh" secondAttribute="trailing" constant="8" id="5HZ-7Z-hsJ"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BBm-xE-IJt" secondAttribute="trailing" constant="20" symbolic="YES" id="Gxb-iE-MEs"/>
-                                    <constraint firstItem="KO7-gM-21g" firstAttribute="leading" secondItem="spw-cU-0f5" secondAttribute="leading" constant="8" id="Qg1-XS-qP6"/>
-                                    <constraint firstItem="BBm-xE-IJt" firstAttribute="top" secondItem="fsg-Qu-vfh" secondAttribute="bottom" constant="8" id="RqW-vr-tSQ"/>
-                                    <constraint firstItem="BBm-xE-IJt" firstAttribute="leading" secondItem="spw-cU-0f5" secondAttribute="leading" constant="8" id="k65-2u-X1o"/>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KO7-gM-21g" secondAttribute="trailing" constant="20" symbolic="YES" id="o8D-3Y-5GU"/>
                                     <constraint firstItem="fsg-Qu-vfh" firstAttribute="top" secondItem="spw-cU-0f5" secondAttribute="top" constant="8" id="q0M-kV-lLM"/>
-                                    <constraint firstItem="KO7-gM-21g" firstAttribute="top" secondItem="BBm-xE-IJt" secondAttribute="bottom" constant="8" id="znt-Vz-d4Z"/>
                                 </constraints>
                             </customView>
                         </subviews>
@@ -775,6 +761,12 @@
                             <constraint firstAttribute="trailing" secondItem="vlv-7I-ib7" secondAttribute="trailing" constant="8" id="wd0-5s-JhP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="connectButton" destination="vlv-7I-ib7" id="zHX-YE-c2h"/>
+                        <outlet property="connectedDeviceLabel" destination="fsg-Qu-vfh" id="QIw-KB-xV7"/>
+                        <outlet property="devicesComboBox" destination="ren-uu-WFJ" id="Wp7-L6-bul"/>
+                        <outlet property="serialDeviceView" destination="spw-cU-0f5" id="cIn-IU-0BH"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

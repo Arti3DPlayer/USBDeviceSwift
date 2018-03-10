@@ -14,23 +14,14 @@ import IOKit.serial
 
 open class SerialDeviceMonitor {
     var serialDevices:[SerialDevice] = []
+    var portUsageIntervalTime:Float = 0.25
+    open var filterDevices:((_ devices:[SerialDevice])->[SerialDevice])?
     
     public init() {
     }
     
     private func getParentProperty(device:io_object_t, key:String) -> AnyObject? {
         return IORegistryEntrySearchCFProperty(device, kIOServicePlane, key as CFString, kCFAllocatorDefault, IOOptionBits(kIORegistryIterateRecursively | kIORegistryIterateParents))
-    }
-    
-    func getDeviceClass(device:io_object_t) -> String {
-        var nameCString:[CChar] = [CChar](repeating: 0, count: 128)
-        let kern_result = IOObjectGetClass(device, &nameCString)
-        
-        if kern_result == KERN_SUCCESS {
-            return String(cString: nameCString)
-        }
-        
-        return ""
     }
     
     func getDeviceProperty(device:io_object_t, key:String) -> AnyObject? {
@@ -46,7 +37,6 @@ open class SerialDeviceMonitor {
             guard let calloutDevice = getDeviceProperty(device: serialPort, key: kIOCalloutDeviceKey) as? String else {
                 continue
             }
-            print("\(kIOCalloutDeviceKey): \(calloutDevice)")
             
             var sd = SerialDevice(path: calloutDevice)
             sd.name = getParentProperty(device: serialPort, key: "USB Product Name") as? String
@@ -60,11 +50,28 @@ open class SerialDeviceMonitor {
         }
         IOObjectRelease(iterator)
         
-        print(newSerialDevices)
+        if (filterDevices != nil) {
+            newSerialDevices = filterDevices!(newSerialDevices)
+        }
+        
+        let oldSet = Set(serialDevices)
+        let newSet = Set(newSerialDevices)
+        
+        
+        
+        for sd in oldSet.subtracting(newSet) {
+            NotificationCenter.default.post(name: .SerialDeviceRemoved, object: ["device": sd])
+        }
+        
+        for sd in newSet.subtracting(oldSet) {
+            NotificationCenter.default.post(name: .SerialDeviceAdded, object: ["device": sd])
+        }
+        
+        serialDevices = newSerialDevices
     }
     
     @objc open func start() {
-        //while true {
+        while true {
             var portIterator: io_iterator_t = 0
             var result: kern_return_t = KERN_FAILURE
             let classesToMatch = IOServiceMatching(kIOSerialBSDServiceValue) as NSMutableDictionary
@@ -73,7 +80,7 @@ open class SerialDeviceMonitor {
             if result == KERN_SUCCESS {
                 getSerialDevices(iterator: portIterator)
             }
-            usleep(1000000)
-        //}
+            usleep(UInt32(portUsageIntervalTime*1000000))
+        }
     }
 }

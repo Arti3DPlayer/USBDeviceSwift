@@ -17,6 +17,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
+        // Adding own function to filter serial devices that we need
+        cfDeviceMonitor.filterDevices = {(devices: [SerialDevice]) -> [SerialDevice] in
+            return devices.filter({$0.vendorId == 1155 && $0.productId == 22336})
+        }
+        
         let cfDeviceDaemon = Thread(target: self.cfDeviceMonitor, selector:#selector(self.cfDeviceMonitor.start), object: nil)
         cfDeviceDaemon.start()
     }

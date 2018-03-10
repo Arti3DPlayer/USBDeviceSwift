@@ -12,10 +12,11 @@
 		3F8A57A5205287F500E5BD99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A57A4205287F500E5BD99 /* Assets.xcassets */; };
 		3F8A57A8205287F500E5BD99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A57A6205287F500E5BD99 /* Main.storyboard */; };
 		3F8A57B120528AF300E5BD99 /* USBDeviceSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8A57B220528AF300E5BD99 /* USBDeviceSwift.framework */; };
+		3FF1D90F2052FDD40046DF07 /* CleanFlightDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF1D90E2052FDD40046DF07 /* CleanFlightDevice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F8A579D205287F500E5BD99 /* SerialDeviceSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SerialDeviceSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F8A579D205287F500E5BD99 /* CleanFlightSerialExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanFlightSerialExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F8A57A0205287F500E5BD99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F8A57A2205287F500E5BD99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3F8A57A4205287F500E5BD99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -23,6 +24,7 @@
 		3F8A57A9205287F500E5BD99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F8A57AA205287F500E5BD99 /* SerialDeviceSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SerialDeviceSwift.entitlements; sourceTree = "<group>"; };
 		3F8A57B220528AF300E5BD99 /* USBDeviceSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = USBDeviceSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FF1D90E2052FDD40046DF07 /* CleanFlightDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanFlightDevice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +42,7 @@
 		3F8A5794205287F500E5BD99 = {
 			isa = PBXGroup;
 			children = (
-				3F8A579F205287F500E5BD99 /* SerialDeviceSwift */,
+				3F8A579F205287F500E5BD99 /* CleanFlightSerialExample */,
 				3F8A579E205287F500E5BD99 /* Products */,
 				3F8A57B020528AF300E5BD99 /* Frameworks */,
 			);
@@ -49,22 +51,23 @@
 		3F8A579E205287F500E5BD99 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3F8A579D205287F500E5BD99 /* SerialDeviceSwift.app */,
+				3F8A579D205287F500E5BD99 /* CleanFlightSerialExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3F8A579F205287F500E5BD99 /* SerialDeviceSwift */ = {
+		3F8A579F205287F500E5BD99 /* CleanFlightSerialExample */ = {
 			isa = PBXGroup;
 			children = (
 				3F8A57A0205287F500E5BD99 /* AppDelegate.swift */,
+				3FF1D90E2052FDD40046DF07 /* CleanFlightDevice.swift */,
 				3F8A57A2205287F500E5BD99 /* ViewController.swift */,
 				3F8A57A4205287F500E5BD99 /* Assets.xcassets */,
 				3F8A57A6205287F500E5BD99 /* Main.storyboard */,
 				3F8A57A9205287F500E5BD99 /* Info.plist */,
 				3F8A57AA205287F500E5BD99 /* SerialDeviceSwift.entitlements */,
 			);
-			path = SerialDeviceSwift;
+			path = CleanFlightSerialExample;
 			sourceTree = "<group>";
 		};
 		3F8A57B020528AF300E5BD99 /* Frameworks */ = {
@@ -78,9 +81,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F8A579C205287F500E5BD99 /* SerialDeviceSwift */ = {
+		3F8A579C205287F500E5BD99 /* CleanFlightSerialExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F8A57AD205287F500E5BD99 /* Build configuration list for PBXNativeTarget "SerialDeviceSwift" */;
+			buildConfigurationList = 3F8A57AD205287F500E5BD99 /* Build configuration list for PBXNativeTarget "CleanFlightSerialExample" */;
 			buildPhases = (
 				3F8A5799205287F500E5BD99 /* Sources */,
 				3F8A579A205287F500E5BD99 /* Frameworks */,
@@ -90,9 +93,9 @@
 			);
 			dependencies = (
 			);
-			name = SerialDeviceSwift;
+			name = CleanFlightSerialExample;
 			productName = SerialDeviceSwift;
-			productReference = 3F8A579D205287F500E5BD99 /* SerialDeviceSwift.app */;
+			productReference = 3F8A579D205287F500E5BD99 /* CleanFlightSerialExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -110,13 +113,13 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
 				};
 			};
-			buildConfigurationList = 3F8A5798205287F500E5BD99 /* Build configuration list for PBXProject "SerialDeviceSwift" */;
+			buildConfigurationList = 3F8A5798205287F500E5BD99 /* Build configuration list for PBXProject "CleanFlightSerialExample" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -129,7 +132,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3F8A579C205287F500E5BD99 /* SerialDeviceSwift */,
+				3F8A579C205287F500E5BD99 /* CleanFlightSerialExample */,
 			);
 		};
 /* End PBXProject section */
@@ -153,6 +156,7 @@
 			files = (
 				3F8A57A3205287F500E5BD99 /* ViewController.swift in Sources */,
 				3F8A57A1205287F500E5BD99 /* AppDelegate.swift in Sources */,
+				3FF1D90F2052FDD40046DF07 /* CleanFlightDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,11 +284,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SerialDeviceSwift/SerialDeviceSwift.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = LGTF372X5G;
-				INFOPLIST_FILE = SerialDeviceSwift/Info.plist;
+				INFOPLIST_FILE = CleanFlightSerialExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ah.com.SerialDeviceSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -296,11 +299,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = SerialDeviceSwift/SerialDeviceSwift.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = LGTF372X5G;
-				INFOPLIST_FILE = SerialDeviceSwift/Info.plist;
+				INFOPLIST_FILE = CleanFlightSerialExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ah.com.SerialDeviceSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -311,7 +313,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3F8A5798205287F500E5BD99 /* Build configuration list for PBXProject "SerialDeviceSwift" */ = {
+		3F8A5798205287F500E5BD99 /* Build configuration list for PBXProject "CleanFlightSerialExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F8A57AB205287F500E5BD99 /* Debug */,
@@ -320,7 +322,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F8A57AD205287F500E5BD99 /* Build configuration list for PBXNativeTarget "SerialDeviceSwift" */ = {
+		3F8A57AD205287F500E5BD99 /* Build configuration list for PBXNativeTarget "CleanFlightSerialExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3F8A57AE205287F500E5BD99 /* Debug */,
