@@ -11,7 +11,7 @@ import Foundation
 import IOKit.hid
 
 
-open class HIDDeviceMonitor: NSObject {
+open class HIDDeviceMonitor {
     public let vp:[HIDMonitorData]
     public let reportSize:Int
     
@@ -20,8 +20,7 @@ open class HIDDeviceMonitor: NSObject {
         self.reportSize = reportSize
     }
     
-    
-    open func start() {
+    @objc open func start() {
         let managerRef = IOHIDManagerCreate(kCFAllocatorDefault, IOOptionBits(kIOHIDOptionsTypeNone))
         var deviceMatches:[[String:Any]] = []
         for vp in self.vp {
@@ -44,7 +43,7 @@ open class HIDDeviceMonitor: NSObject {
         IOHIDManagerRegisterDeviceRemovalCallback(managerRef, removalCallback, unsafeBitCast(self, to: UnsafeMutableRawPointer.self))
         
         
-        RunLoop.current.run();
+        RunLoop.current.run()
     }
     
     open func read(_ inResult: IOReturn, inSender: UnsafeMutableRawPointer, type: IOHIDReportType, reportId: UInt32, report: UnsafeMutablePointer<UInt8>, reportLength: CFIndex) {

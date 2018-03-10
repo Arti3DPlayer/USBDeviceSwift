@@ -9,14 +9,14 @@
 import Cocoa
 
 
-open class USBDeviceMonitor: NSObject {
+open class USBDeviceMonitor {
     public let vp:[USBMonitorData]
 
     public init(_ vp:[USBMonitorData]) {
         self.vp = vp
     }
         
-    public func start() {
+    @objc open func start() {
         for vp in self.vp {
             var matchedIterator:io_iterator_t = 0
             var removalIterator:io_iterator_t = 0
@@ -52,7 +52,7 @@ open class USBDeviceMonitor: NSObject {
         RunLoop.current.run()
     }
 
-    public func rawDeviceAdded(iterator: io_iterator_t) {
+    open func rawDeviceAdded(iterator: io_iterator_t) {
         
         while case let usbDevice = IOIteratorNext(iterator), usbDevice != 0 {
             var score:Int32 = 0
@@ -156,7 +156,7 @@ open class USBDeviceMonitor: NSObject {
         }
     }
     
-    public func rawDeviceRemoved(iterator: io_iterator_t) {
+    open func rawDeviceRemoved(iterator: io_iterator_t) {
         while case let usbDevice = IOIteratorNext(iterator), usbDevice != 0 {
             var kr:Int32 = 0
             var did:UInt64 = 0

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -669,6 +669,9 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="eLb-vu-c7W"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -686,7 +689,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <comboBox verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtK-Nm-lFy">
+                            <comboBox verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xtK-Nm-lFy">
                                 <rect key="frame" x="8" y="238" width="379" height="26"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Select STM32 device from list" drawsBackground="YES" completes="NO" usesDataSource="YES" numberOfVisibleItems="5" id="o9q-Bb-C05">
                                     <font key="font" metaFont="system"/>
@@ -700,9 +703,6 @@
                             </comboBox>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dQh-1v-1d8">
                                 <rect key="frame" x="386" y="234" width="92" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="wS0-Er-xnK"/>
-                                </constraints>
                                 <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nr3-wp-m5a">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -714,7 +714,7 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="ksp-7r-kwl">
                                 <rect key="frame" x="8" y="8" width="464" height="225"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fk-VT-c6e">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4fk-VT-c6e">
                                         <rect key="frame" x="6" y="200" width="452" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Connected device: DeviceName" id="aDl-Ek-fI0">
                                             <font key="font" metaFont="system"/>
@@ -722,7 +722,7 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufs-vk-waT">
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ufs-vk-waT">
                                         <rect key="frame" x="6" y="146" width="64" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Response" id="9Bz-H5-tvj">
                                             <font key="font" metaFont="system"/>
@@ -742,8 +742,10 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ufs-vk-waT" secondAttribute="trailing" constant="20" symbolic="YES" id="4Zr-RM-Sdy"/>
                                     <constraint firstItem="PFF-MC-AJX" firstAttribute="top" secondItem="4fk-VT-c6e" secondAttribute="bottom" constant="8" id="8EQ-pL-2Ny"/>
                                     <constraint firstItem="PFF-MC-AJX" firstAttribute="leading" secondItem="ksp-7r-kwl" secondAttribute="leading" constant="8" id="9LW-5i-daV"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PFF-MC-AJX" secondAttribute="trailing" constant="20" symbolic="YES" id="DvO-Mh-pLm"/>
                                     <constraint firstItem="ufs-vk-waT" firstAttribute="leading" secondItem="ksp-7r-kwl" secondAttribute="leading" constant="8" id="RIf-7k-vbg"/>
                                     <constraint firstAttribute="trailing" secondItem="4fk-VT-c6e" secondAttribute="trailing" constant="8" id="Vwx-ZC-Oga"/>
                                     <constraint firstItem="4fk-VT-c6e" firstAttribute="leading" secondItem="ksp-7r-kwl" secondAttribute="leading" constant="8" id="g07-pd-gsI"/>
