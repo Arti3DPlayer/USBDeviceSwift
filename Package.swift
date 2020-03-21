@@ -1,3 +1,5 @@
+// swift-tools-version:4.0
+
 //
 //  Package.swift
 //  
@@ -9,5 +11,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "USBDeviceSwift"
+    name: "USBDeviceSwift",
+    products: [
+        .library(
+            name: "USBDeviceSwift",
+            targets: ["USBDeviceSwift"]),
+    ],
+    targets: [
+        .target(
+            name: "USBDeviceSwift",
+            path: "Sources"),
+    ]
 )
