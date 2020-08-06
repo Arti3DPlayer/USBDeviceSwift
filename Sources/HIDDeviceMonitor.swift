@@ -24,7 +24,14 @@ open class HIDDeviceMonitor {
         let managerRef = IOHIDManagerCreate(kCFAllocatorDefault, IOOptionBits(kIOHIDOptionsTypeNone))
         var deviceMatches:[[String:Any]] = []
         for vp in self.vp {
-            deviceMatches.append([kIOHIDProductIDKey: vp.productId, kIOHIDVendorIDKey: vp.vendorId])
+            var match = [kIOHIDProductIDKey: vp.productId, kIOHIDVendorIDKey: vp.vendorId]
+            if let usagePage = vp.usagePage {
+                match[kIOHIDDeviceUsagePageKey] = usagePage
+            }
+            if let usage = vp.usage {
+                match[kIOHIDDeviceUsageKey] = usage
+            }
+            deviceMatches.append(match)
         }
         IOHIDManagerSetDeviceMatchingMultiple(managerRef, deviceMatches as CFArray)
         IOHIDManagerScheduleWithRunLoop(managerRef, CFRunLoopGetCurrent(), CFRunLoopMode.defaultMode.rawValue);

@@ -19,10 +19,19 @@ public extension Notification.Name {
 public struct HIDMonitorData {
     public let vendorId:Int
     public let productId:Int
-    
+    public var usagePage:Int?
+    public var usage:Int?
+
     public init (vendorId:Int, productId:Int) {
         self.vendorId = vendorId
         self.productId = productId
+    }
+
+    public init (vendorId:Int, productId:Int, usagePage:Int?, usage:Int?) {
+        self.vendorId = vendorId
+        self.productId = productId
+        self.usagePage = usagePage
+        self.usage = usage
     }
 }
 
