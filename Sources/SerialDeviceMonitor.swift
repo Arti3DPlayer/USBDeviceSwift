@@ -28,7 +28,7 @@ open class SerialDeviceMonitor {
         let cfKey = key as CFString
         let propValue = IORegistryEntryCreateCFProperty(device, cfKey, kCFAllocatorDefault, 0)
         
-        return propValue?.takeUnretainedValue()
+        return propValue?.takeRetainedValue()
     }
     
     func getSerialDevices(iterator: io_iterator_t) {
