@@ -36,7 +36,7 @@ public struct HIDMonitorData {
 }
 
 public struct HIDDevice {
-    public let id:String
+    public let id:Int32
     public let vendorId:Int
     public let productId:Int
     public let reportSize:Int
@@ -46,7 +46,7 @@ public struct HIDDevice {
     public init(device:IOHIDDevice) {
         self.device = device
         
-        self.id = IOHIDDeviceGetProperty(self.device, kIOHIDLocationIDKey as CFString) as? String ?? ""
+        self.id = IOHIDDeviceGetProperty(self.device, kIOHIDLocationIDKey as CFString) as? Int32 ?? 0
         self.name = IOHIDDeviceGetProperty(device, kIOHIDProductKey as CFString) as? String ?? ""
         self.vendorId = IOHIDDeviceGetProperty(self.device, kIOHIDVendorIDKey as CFString) as? Int ?? 0
         self.productId = IOHIDDeviceGetProperty(self.device, kIOHIDProductIDKey as CFString) as? Int ?? 0

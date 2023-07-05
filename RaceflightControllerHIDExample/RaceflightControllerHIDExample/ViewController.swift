@@ -120,7 +120,7 @@ class ViewController: NSViewController, NSComboBoxDataSource {
             return
         }
         
-        guard let id:String = nobj["id"] as? String else {
+        guard let id:Int32 = nobj["id"] as? Int32 else {
             return
         }
         DispatchQueue.main.async {
